@@ -5,12 +5,12 @@ import Camera from './Camera'
 import Renderer from './Renderer'
 import Controls from './Controls'
 import CamParallax from './CamParallax'
+import Navigation from "./Navigation"
 
 import Pit from './Pit'
 import Lights from './Lights'
 import Heart from './Heart'
-import Floor from './Floor'
-import Walls from './Walls'
+import Room from './Room'
 
 import RAF from '../utils/RAF'
 import Sizes from '../utils/Sizes'
@@ -45,14 +45,14 @@ export default class MainThreeScene {
 		this.setScene()
 		this.setCamera()
 		this.setRenderer()
-		// this.setCamParallax()
 		this.setControls()
+		// this.setNavigation()
 
 		this.setPit()
 		this.setLights()
 		this.setHeart()
-		// this.setFloor()
 		this.setRoom()
+
 
 		//RENDER LOOP AND WINDOW SIZE UPDATER SETUP
 		this.sizes.on('resize', () => {
@@ -96,7 +96,7 @@ export default class MainThreeScene {
 
 	setCamera() {
 		this.camera = new Camera()
-		this.camera.instance.position.set(0, 9, 19)
+		this.camera.instance.position.set(22, 10, 22)
 
 	}
 
@@ -109,9 +109,9 @@ export default class MainThreeScene {
 		this.controls = new Controls()
 	}
 
-	setCamParallax() {
-		this.camParallax = new CamParallax(this.camera.instance)
-	}
+	// setNavigation() {
+	// 	this.navigation = new Navigation()
+	// }
 
 	setPit() {
 		this.pit = new Pit()
@@ -125,10 +125,8 @@ export default class MainThreeScene {
 		this.heart = new Heart()
 	}
 
-
-
 	setRoom() {
-		this.walls = new Walls()
+		this.walls = new Room()
 	}
 
 	update() {
@@ -144,10 +142,11 @@ export default class MainThreeScene {
 		if(this.controls)
 			this.controls.update()
 
-
-
 		if(this.cube)
 			this.cube.update()
+
+		if(this.navigation)
+			this.navigation.update()
 	}
 
 	resize() {
