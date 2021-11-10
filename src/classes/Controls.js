@@ -1,3 +1,4 @@
+import { Vector3 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import MainThreeScene from './MainThreeScene'
@@ -18,6 +19,7 @@ export default class Controls {
 		this.controls.maxDistance = 20
 		this.controls.minDistance = 5
     this.controls.enableDamping = true
+    this.controls.target = new Vector3(0, 6, 0)
     this.controls.update()
   }
 

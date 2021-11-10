@@ -4,8 +4,13 @@ import { Pane } from 'tweakpane'
 import Camera from './Camera'
 import Renderer from './Renderer'
 import Controls from './Controls'
+import CamParallax from './CamParallax'
 
-import Cube from './DummyCube'
+import Pit from './Pit'
+import Lights from './Lights'
+import Heart from './Heart'
+import Floor from './Floor'
+import Walls from './Walls'
 
 import RAF from '../utils/RAF'
 import Sizes from '../utils/Sizes'
@@ -40,9 +45,14 @@ export default class MainThreeScene {
 		this.setScene()
 		this.setCamera()
 		this.setRenderer()
+		// this.setCamParallax()
 		this.setControls()
 
-		this.setDummyCube()
+		this.setPit()
+		this.setLights()
+		this.setHeart()
+		// this.setFloor()
+		this.setRoom()
 
 		//RENDER LOOP AND WINDOW SIZE UPDATER SETUP
 		this.sizes.on('resize', () => {
@@ -86,7 +96,8 @@ export default class MainThreeScene {
 
 	setCamera() {
 		this.camera = new Camera()
-		this.camera.instance.position.set(0, 0, 8)
+		this.camera.instance.position.set(0, 9, 19)
+
 	}
 
 	setRenderer() {
@@ -98,8 +109,26 @@ export default class MainThreeScene {
 		this.controls = new Controls()
 	}
 
-	setDummyCube() {
-		this.cube = new Cube()
+	setCamParallax() {
+		this.camParallax = new CamParallax(this.camera.instance)
+	}
+
+	setPit() {
+		this.pit = new Pit()
+	}
+
+	setLights() {
+		this.lights = new Lights()
+	}
+
+	setHeart() {
+		this.heart = new Heart()
+	}
+
+
+
+	setRoom() {
+		this.walls = new Walls()
 	}
 
 	update() {
@@ -114,6 +143,8 @@ export default class MainThreeScene {
 
 		if(this.controls)
 			this.controls.update()
+
+
 
 		if(this.cube)
 			this.cube.update()
