@@ -13,22 +13,24 @@ export default class Pit {
       this.modelLoader = new GLTFLoader()
       this.textureLoader = new THREE.TextureLoader()
 
+      this.setMaterial()
       this.setModel()
   }
 
-  setModel() {
+  setMaterial() {
     this.texture = this.textureLoader.load('/assets/textures/pit.png')
     this.texture.flipY = false
 
+    this.material = new THREE.MeshBasicMaterial({
+      map: this.texture,
+    })
+  }
+
+  setModel() {
     this.modelLoader.load('/assets/models/pit.glb', glb => {
-      this.model = glb.scene.children[0]
+      this.scene.add(glb.scene)
 
-      glb.scene.children[0].material = new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        map: this.texture,
-      })
-
-      this.scene.add(glb.scene.children[0])
+      glb.scene.children[0].material = this.material
     })
   }
 

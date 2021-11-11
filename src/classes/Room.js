@@ -10,25 +10,25 @@ export default class Room {
     this.modelLoader = new GLTFLoader()
     this.textureLoader = new THREE.TextureLoader()
 
+    this.setTextures()
     this.setMaterials()
     this.setModel()
   }
 
-  setMaterials() {
+  setTextures() {
     this.textures = {}
 
     this.textures.wall = this.textureLoader.load('/assets/textures/walls.png')
-    this.textures.wall.flipY = false
-
     this.textures.brick = this.textureLoader.load('/assets/textures/brick.png')
-    this.textures.brick.flipY = false
-
     this.textures.floor = this.textureLoader.load('/assets/textures/floor.png')
-    this.textures.floor.flipY = false
-
     this.textures.clouds = this.textureLoader.load('/assets/textures/clouds.png')
-    this.textures.clouds.flipY = false
 
+    for(const texture in this.textures) {
+      this.textures[texture].flipY = false
+    }
+  }
+
+  setMaterials() {
     this.materials = {}
 
     this.materials.wall = new THREE.MeshBasicMaterial({

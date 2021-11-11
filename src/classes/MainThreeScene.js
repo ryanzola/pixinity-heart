@@ -45,7 +45,8 @@ export default class MainThreeScene {
 		this.setScene()
 		this.setCamera()
 		this.setRenderer()
-		this.setControls()
+		this.setCamParallax()
+		// this.setControls()
 		// this.setNavigation()
 
 		this.setPit()
@@ -96,7 +97,7 @@ export default class MainThreeScene {
 
 	setCamera() {
 		this.camera = new Camera()
-		this.camera.instance.position.set(22, 10, 22)
+		this.camera.instance.position.set(10, 9, 21)
 
 	}
 
@@ -107,6 +108,10 @@ export default class MainThreeScene {
 
 	setControls() {
 		this.controls = new Controls()
+	}
+
+	setCamParallax() {
+		this.camParallax = new CamParallax()
 	}
 
 	// setNavigation() {
@@ -136,11 +141,14 @@ export default class MainThreeScene {
 		if(this.renderer)
 			this.renderer.update()
 
-		if(this.camera)
-			this.camera.update()
+		// if(this.camera)
+		// 	this.camera.update()
 
 		if(this.controls)
 			this.controls.update()
+
+		if(this.camParallax)
+			this.camParallax.update()
 
 		if(this.cube)
 			this.cube.update()

@@ -39,15 +39,15 @@ export default class Heart {
 
   setModel() {
     this.modelLoader.load('/assets/models/heart.glb', glb => {
-
       this.scene.add(glb.scene)
 
       const heartMesh = glb.scene.children.find(child => child.name === 'heart')
-      const wingMesh =  glb.scene.children.find(child => child.name === 'wings')
+      const wingEmissionMesh =  glb.scene.children.find(child => child.name === 'wingsemission')
+      const wingSideMesh = glb.scene.children.find(child => child.name === 'wingsside')
 
       heartMesh.material = this.materials.heart
-      wingMesh.material = this.materials.wings
-      
+      wingEmissionMesh.material = this.materials.wings
+      wingSideMesh.material = this.materials.wings
     })
   }
 }

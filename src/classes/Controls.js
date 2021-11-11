@@ -16,7 +16,7 @@ export default class Controls {
   setControls() {
 		this.controls = new OrbitControls(this.camera.instance, this.renderer.instance.domElement)
 		this.controls.enabled = true
-		this.controls.maxDistance = 30
+		this.controls.maxDistance = 25
 		this.controls.minDistance = 5
     this.controls.enableDamping = true
     this.controls.target = new Vector3(0, 5, 0)
