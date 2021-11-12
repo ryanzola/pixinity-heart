@@ -20,6 +20,7 @@ export default class Pit {
   setMaterial() {
     this.texture = this.textureLoader.load('/assets/textures/pit.png')
     this.texture.flipY = false
+    this.texture.encoding = THREE.sRGBEncoding
 
     this.material = new THREE.MeshBasicMaterial({
       map: this.texture,

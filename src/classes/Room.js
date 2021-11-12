@@ -25,6 +25,7 @@ export default class Room {
 
     for(const texture in this.textures) {
       this.textures[texture].flipY = false
+      this.textures[texture].encoding = THREE.sRGBEncoding
     }
   }
 

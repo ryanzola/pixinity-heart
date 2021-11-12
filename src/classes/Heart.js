@@ -20,9 +20,11 @@ export default class Heart {
     
     this.textures.heart = this.textureLoader.load('/assets/textures/heart.png')
     this.textures.heart.flipY = false
+    this.textures.heart.encoding = THREE.sRGBEncoding
 
     this.textures.wings = this.textureLoader.load('/assets/textures/wings.png')
     this.textures.wings.flipY = false
+    this.textures.wings.encoding = THREE.sRGBEncoding
 
     // materials
     this.materials = {}
