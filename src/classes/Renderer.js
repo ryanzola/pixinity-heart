@@ -1,6 +1,8 @@
 import * as THREE from 'three'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
+import { SMAAPass } from 'three/examples/jsm/postprocessing/SMAAPass.js'
 
 import MainThreeScene from './MainThreeScene'
 
@@ -97,9 +99,19 @@ export default class Renderer {
 
     // passes
     this.postProcess.renderPass = new RenderPass(this.scene, this.camera.instance)
+    this.postProcess.bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(this.config.width, this.config.height),
+      0.25,
+      0.33,
+      0.85
+    )
 
+    this.postProcess.smaaPass = new SMAAPass()
+    
     // add passes
     this.postProcess.composer.addPass(this.postProcess.renderPass)
+    // this.postProcess.composer.addPass(this.postProcess.bloomPass)
+    this.postProcess.composer.addPass(this.postProcess.smaaPass)
   }
 
   resize() {
